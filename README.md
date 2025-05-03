@@ -1,28 +1,28 @@
 # Rock-Paper-Scissors API
 
-Ett HTTP-API för att lösa konflikter genom spelet Sten, Sax, Påse. Detta projekt är en del av en backend-uppgift som följer REST-principer och bygger på Java och Spring Boot.
+An HTTP API to resolve conflicts using the game Rock, Paper, Scissors. This project is part of a backend assignment, following REST principles and built with Java and Spring Boot.
 
 ---
 
-## 🛠 Teknisk översikt
+## 🛠 Technical Overview
 
 - **Java 17+**
 - **Spring Boot**
 - **Gradle**
 - **Docker / Docker Compose**
-- Ingen databas – allt speldata hålls i minnet
+- No database – all game data is stored in memory
 
 ---
 
-## 🚀 Starta applikationen
+## 🚀 Run the Application
 
-### Med Gradle
+### With Gradle
 
 ```bash
 ./gradlew bootRun
 ```
 
-Eller bygg en JAR-fil och kör:
+Or build a JAR file and run it:
 
 ```bash
 ./gradlew build
@@ -31,92 +31,86 @@ java -jar build/libs/rockpaperscissors-0.0.1-SNAPSHOT.jar
 
 ---
 
-### Med Docker
+### With Docker
 
-#### Bygg Docker-image
+#### Build Docker image
 
 ```bash
 docker build -t rockpaperscissors .
 ```
 
-#### Kör containern
+#### Run the container
 
 ```bash
 docker run -p 8080:8080 rockpaperscissors
 ```
 
-#### Alternativ: Docker Compose
+#### Alternatively: Docker Compose
 
 ```bash
 docker-compose up --build
 ```
 
-Applikationen är då tillgänglig på:
+The application will then be available at:
 ```
 http://localhost:8080/api/games
 ```
 
 ---
 
-## 📬 API-endpoints
+## 📬 API Endpoints
 
-### Skapa nytt spel
+### Create a new game
 
 ```http
 POST /api/games
 ```
 
-**curl-exempel:**
+**curl example:**
 ```bash
-curl -X POST http://localhost:8080/api/games \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Daniel"}'
+curl -X POST http://localhost:8080/api/games   -H "Content-Type: application/json"   -d '{"name": "Daniel"}'
 ```
 
 ---
 
-### Anslut till spel
+### Join a game
 
 ```http
 POST /api/games/{id}/join
 ```
 
-**curl-exempel:**
+**curl example:**
 ```bash
-curl -X POST http://localhost:8080/api/games/{id}/join \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Erik"}'
+curl -X POST http://localhost:8080/api/games/{id}/join   -H "Content-Type: application/json"   -d '{"name": "Erik"}'
 ```
 
 ---
 
-### Gör ett drag
+### Make a move
 
 ```http
 POST /api/games/{id}/move
 ```
 
-**curl-exempel:**
+**curl example:**
 ```bash
-curl -X POST http://localhost:8080/api/games/{id}/move \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Daniel", "move": "ROCK"}'
+curl -X POST http://localhost:8080/api/games/{id}/move   -H "Content-Type: application/json"   -d '{"name": "Daniel", "move": "ROCK"}'
 ```
 
 ---
 
-### Hämta spelstatus
+### Get game status
 
 ```http
 GET /api/games/{id}
 ```
 
-**curl-exempel:**
+**curl example:**
 ```bash
 curl http://localhost:8080/api/games/{id}
 ```
 
-**Response-exempel:**
+**Response example:**
 ```json
 {
   "id": "c1234567-89ab-cdef-0123-456789abcdef",
@@ -131,25 +125,25 @@ curl http://localhost:8080/api/games/{id}
 
 ---
 
-## 📦 Projektstruktur
+## 📦 Project Structure
 
 ```plaintext
 src/main/java
-├── controller        // REST-API
-├── service           // Affärslogik
-├── model             // Domänobjekt
+├── controller        // REST API
+├── service           // Business logic
+├── model             // Domain objects
 │   └── enums         // Move, GameStatus
 ├── dto               // GameDTO
-├── exception         // Egendefinierade fel
+├── exception         // Custom exceptions
 ├── resources/
 │   └── application.yml
 ```
 
 ---
 
-## ✅ Tester
+## ✅ Tests
 
-Kör tester med:
+Run tests with:
 
 ```bash
 ./gradlew test
@@ -157,6 +151,6 @@ Kör tester med:
 
 ---
 
-## 📄 Licens
+## 📄 License
 
-MIT – använd fritt i utbildningssyfte.
+MIT – freely usable for educational purposes.
